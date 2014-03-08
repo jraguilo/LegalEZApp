@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.legalez.legalezapp.EnterTextActivty"
+            android:name="com.legalez.legalezapp.EnterTextActivity"
             android:label="@string/title_activity_enter_text_activty" >
         </activity>
         <activity

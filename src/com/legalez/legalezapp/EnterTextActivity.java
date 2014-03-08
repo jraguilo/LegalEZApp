@@ -12,6 +12,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,30 +39,8 @@ public class EnterTextActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                nameValuePairs.add(new BasicNameValuePair("text", mEnterText.getText().toString()));
-                String outPut = null;
-                
-                Log.d("text", mEnterText.getText().toString());
-                
-                try {
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("http://198.199.96.10/");
-                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                     
-                    HttpResponse response = httpclient.execute(httppost);
-                    HttpEntity entity = response.getEntity();               
- 
-                    // print response
-                    outPut = EntityUtils.toString(entity);
-                    Log.i("GET RESPONSE—-", outPut);
-                     
-                    //is = entity.getContent();
-                    Log.e("log_tag ******", "good connection");
-                     
-                } catch (Exception e) {
-                    Log.e("log_tag ******", "Error in http connection " + e.toString());
-                }
+                UploadTextTask textTask = new UploadTextTask();
+                textTask.execute();
             }
         });
         
@@ -75,5 +54,41 @@ public class EnterTextActivity extends Activity {
         });
     }
     
-    
+    class UploadTextTask extends AsyncTask<String, Void, String> {
+
+        private Exception exception;
+
+        protected String doInBackground(String... urls) {
+            ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+            nameValuePairs.add(new BasicNameValuePair("text", mEnterText.getText().toString()));
+            String output = null;
+            
+            Log.d("text", mEnterText.getText().toString());
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost("http://198.199.96.10/");
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                 
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();               
+
+                // print response
+                output = EntityUtils.toString(entity);
+                Log.i("GET RESPONSE--", output);
+                 
+                //is = entity.getContent();
+                Log.e("log_tag", "good connection");
+                 
+            } catch (Exception e) {
+                Log.e("log_tag", "Error in http connection " + e.toString());
+            }
+            
+            return output;
+        }
+
+        protected void onPostExecute(String output) {
+            // TODO: check this.exception 
+            // TODO: do something with the output
+        }
+    }
 }

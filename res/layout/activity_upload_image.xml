@@ -8,9 +8,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".UploadImageActivity" >
 
-    <TextView
+    <EditText
+        android:id="@+id/image_name_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/select_image_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_below="@+id/image_name_field"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/select_image" />
+
+    <Button
+        android:id="@+id/process_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/select_image_button"
+        android:layout_marginTop="20dp"
+        android:text="@string/process_image" />
 
 </RelativeLayout>

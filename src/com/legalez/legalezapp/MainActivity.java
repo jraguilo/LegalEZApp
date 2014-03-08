@@ -35,6 +35,16 @@ public class MainActivity extends Activity {
                 startActivity(newInt);
             }
         });
+        
+        final Button cameraImageButton = (Button) findViewById(R.id.camera_button);
+        cameraImageButton.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                Intent newInt = new Intent(MainActivity.this, CameraImageActivity.class);
+                startActivity(newInt);
+            }
+        });
     }
 
 

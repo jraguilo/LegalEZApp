@@ -30,6 +30,10 @@
             android:name="com.legalez.legalezapp.UploadImageActivity"
             android:label="@string/title_activity_upload_image" >
         </activity>
+        <activity
+            android:name="com.legalez.legalezapp.CameraImageActivity"
+            android:label="@string/title_activity_camera_image" >
+        </activity>
     </application>
 
 </manifest>

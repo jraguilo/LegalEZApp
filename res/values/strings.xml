@@ -10,5 +10,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_upload_image">UploadImageActivity</string>
     <string name="translate">Translate</string>
-	<string name="upload">Upload Image</string>
+    <string name="upload">Upload Image</string>
+    <string name="title_activity_camera_image">CameraImageActivity</string>
+
 </resources>

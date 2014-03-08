@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.legalez.legalezapp.EnterTextActivty"
+            android:label="@string/title_activity_enter_text_activty" >
+        </activity>
+        <activity
+            android:name="com.legalez.legalezapp.UploadImageActivity"
+            android:label="@string/title_activity_upload_image" >
+        </activity>
     </application>
 
 </manifest>

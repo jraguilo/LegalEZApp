@@ -100,22 +100,6 @@ public class UploadImageActivity extends Activity {
     }
 
     public class AsyncProcessTask extends AsyncTask<String, Void, String> {
-        /*private ProgressDialog dialog;
-
-        protected void onPreExecute() {
-            dialog.setMessage("Processing");
-            dialog.setCancelable(false);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.show();
-        }
-
-        protected void onPostExecute(Boolean result) {
-            if (dialog.isShowing()) {
-                dialog.dismiss();
-            }
-        }*/
-
-        //private Exception exception;
 
         protected String doInBackground(String... urls) {
             ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -124,14 +108,19 @@ public class UploadImageActivity extends Activity {
             
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://198.199.96.10/");
+                HttpPost httppost = new HttpPost("http://198.199.96.10/upload/");
                 List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
 
-                nameValuePair.add(new BasicNameValuePair("param name",strImage));
+                nameValuePair.add(new BasicNameValuePair("image",strImage));
 
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 responseText = EntityUtils.toString(entity);
+                
+                //display response text in enter text activity
+                Intent newInt = new Intent(UploadImageActivity.this, EnterTextActivity.class);
+                newInt.putExtra("text", responseText);
+                startActivity(newInt);
                  
             } catch (Exception e) {
                 Log.e("log_tag", "Error in http connection " + e.toString());
@@ -139,11 +128,6 @@ public class UploadImageActivity extends Activity {
             
             Log.e("responseText", responseText);
             return responseText;
-        }
-
-        protected void onPostExecute(String output) {
-            // TODO: check this.exception 
-            // TODO: do something with the output
         }
     }
     

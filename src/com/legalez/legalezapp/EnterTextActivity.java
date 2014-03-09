@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -33,6 +32,10 @@ public class EnterTextActivity extends Activity {
         setContentView(R.layout.activity_enter_text);
         
         mEnterText = (EditText) findViewById(R.id.enter_text);
+        Bundle extras = getIntent().getExtras();
+        if (getIntent().hasExtra("text")) {
+            mEnterText.setText(extras.getString("text"));
+        }
         
         final Button translateButton = (Button) findViewById(R.id.translate_button);
         translateButton.setOnClickListener(new OnClickListener() {
@@ -55,8 +58,6 @@ public class EnterTextActivity extends Activity {
     }
     
     class UploadTextTask extends AsyncTask<String, Void, String> {
-
-        private Exception exception;
 
         protected String doInBackground(String... urls) {
             Log.d("text", "Performing UploadText");

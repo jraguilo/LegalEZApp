@@ -3,6 +3,7 @@ package com.legalez.legalezapp;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class ResultActivity extends Activity {
 
@@ -11,7 +12,10 @@ public class ResultActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         
-        
+        TextView mResultText = (TextView) findViewById(R.id.result_text);
+        Bundle extras = getIntent().getExtras();
+        String result = extras.getString("result");
+        mResultText.setText(result);
     }
 
     @Override

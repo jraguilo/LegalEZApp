@@ -38,6 +38,10 @@
             android:name="com.legalez.legalezapp.CameraImageActivity"
             android:label="@string/title_activity_camera_image" >
         </activity>
+        <activity
+            android:name="com.legalez.legalezapp.ResultActivity"
+            android:label="@string/title_activity_result" >
+        </activity>
     </application>
 
 </manifest>

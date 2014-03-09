@@ -59,17 +59,20 @@ public class EnterTextActivity extends Activity {
         private Exception exception;
 
         protected String doInBackground(String... urls) {
+            Log.d("text", "Performing UploadText");
             ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-            nameValuePairs.add(new BasicNameValuePair("text", mEnterText.getText().toString()));
+            nameValuePairs.add(new BasicNameValuePair("block", mEnterText.getText().toString()));
             String output = null;
             
             Log.d("text", mEnterText.getText().toString());
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://198.199.96.10/");
+                HttpPost httppost = new HttpPost("http://198.199.96.10/translatesimple/");
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                Log.d("Post_Tag", httppost.toString());
                  
                 HttpResponse response = httpclient.execute(httppost);
+                Log.d("Response", response.getStatusLine().toString());
                 HttpEntity entity = response.getEntity();               
 
                 // print response
@@ -78,6 +81,12 @@ public class EnterTextActivity extends Activity {
                  
                 //is = entity.getContent();
                 Log.e("log_tag", "good connection");
+                
+                //display result in result activity
+                Intent newInt = new Intent(EnterTextActivity.this, ResultActivity.class);
+                newInt.putExtra("result", output);
+                startActivity(newInt);
+                
                  
             } catch (Exception e) {
                 Log.e("log_tag", "Error in http connection " + e.toString());
